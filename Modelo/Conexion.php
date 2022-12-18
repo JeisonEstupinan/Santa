@@ -1,12 +1,14 @@
 <?php
-class Conexion{
-    function __construct(){
+class Conexion
+{
+    function __construct()
+    {
     }
-    public static function getConexion(){
+    public static function getConexion()
+    {
         $con = null;
 
-        try
-        {
+        try {
 
             // Conexión
             $con = new PDO('mysql:http://localhost/phpmyadmin/index.php?route=/database/structure&db=santa_secreto; dbname=santa_secreto', 'root', '');
@@ -17,15 +19,11 @@ class Conexion{
             // Caracteres utf8
             $con->exec("SET CHARACTER SET utf8");
 
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
 
             $con = "ERROR";
 
-        }
-        finally
-        {
+        } finally {
 
             return $con;
 

@@ -27,10 +27,11 @@ $num = count($listaFamilia);
             'numSegments': <?php echo $num; ?>,
             'outerRadius'  : 170,
             'segments'     : [<?php
-                foreach($listaFamilia as $Familia) {
-                    echo "
-                    {'fillStyle':'#f9b1c3 ','text':'" .$Familia->getNombre(). "'},
-                    ";} ?>
+            foreach ($listaFamilia as $Familia) {
+                echo "
+                    {'fillStyle':'#f9b1c3 ','text':'" . $Familia->getNombre() . "'},
+                    ";
+            } ?>
             ],
         'animation' :
         {
