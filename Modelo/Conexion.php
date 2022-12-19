@@ -11,7 +11,7 @@ class Conexion
         try {
 
             // Conexión
-            $con = new PDO('mysql:http://localhost/phpmyadmin/index.php?route=/database/structure&db=santa_secreto; dbname=santa_secreto', 'root', '');
+            $con = new PDO('mysql:https://databases.000webhost.com/db_structure.php?server=1&db=id18112597_santa_secreto; dbname=id18112597_santa_secreto', 'id18112597_rolo0908', '_i3OdtaI[N/Ypgu4');
 
             // Errores
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
