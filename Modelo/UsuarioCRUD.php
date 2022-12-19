@@ -7,10 +7,17 @@ class CRUD
         require_once("Conexion.php");
         $this->Db = Conexion::getConexion();
     }
+
+    public function regalos($id,$link, $desc){
+        $sql = $this->Db->prepare('UPDATE persona SET Link=:LINK, Descripcion=:DESCRIP WHERE id_persona=:ID');
+        $resultado=$sql->execute(array(':LINK' => $link, ':ID' => $id,':DESCRIP'=>$desc));
+        return $resultado;
+    }
     public function insert($pass, $id)
     {
         $sql = $this->Db->prepare('UPDATE persona SET Contrasena=MD5(:PASS) WHERE id_persona=:ID');
-        $sql->execute(array(':PASS' => $pass, ':ID' => $id));
+        $resultado=$sql->execute(array(':PASS' => $pass, ':ID' => $id));
+        return $resultado;
     }
     public function Read($Nombre)
     {
