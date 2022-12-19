@@ -24,6 +24,7 @@ if($_SESSION['nombre'] != NULL && $_SESSION['id']!= NULL){
         <br /><br />
         <canvas id="canvas" width="400" height="400"></canvas>
         <input type="button" id="spin_button" value="Girar" alt="Spin" onClick="startSpin();" />
+        <a href="../Modelo/CerrarSesion.php"><input type="button" id="logout" value="Salir"/></a>
         <script>
             let theWheel = new Winwheel({
                 'numSegments': <?php echo $num; ?>,
