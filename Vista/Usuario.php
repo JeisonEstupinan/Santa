@@ -21,6 +21,7 @@ foreach ($listaFamilia as $Familia) {
     </tr></table> ";
 }
 ?>
+        <a href="../Modelo/CerrarSesion.php"><input type="button" id="logout" value="Salir"/></a>
 </body>
 
 </html>
