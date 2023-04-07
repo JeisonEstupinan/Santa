@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_GET['santa'])){
+if($_GET['a']== 'santa'){
     require('../Modelo/UsuarioCRUD.php');
     require('../Modelo/Usuario.php');
     $usuario = new UsuarioClass();

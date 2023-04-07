@@ -56,7 +56,7 @@ class CRUD
     }
     public function setSanta($nombre1, $id1, $id2, $nombre2)
     {
-        $sql = $this->Db->prepare('UPDATE persona SET Estado="Macth" WHERE id_persona=:ID AND Nombre=:NOMB');
+        $sql = $this->Db->prepare("UPDATE persona SET Estado='Match' WHERE id_persona=:ID AND Nombre=:NOMB");
         $sql->execute(array(':ID' => $id1, ':NOMB' => $nombre1));
         $sql2 = $this->Db->prepare('INSERT INTO santa(id_persona1,id_persona2) VALUES (:PER1,:PER2)');
         $sql2->execute(array(':PER1' => $nombre2, ':PER2' => $id1));
@@ -78,12 +78,13 @@ class CRUD
 
     public function getMatch($nombre)
     {
+        $Usuario1=null;
         $sql = $this->Db->prepare('SELECT persona.Nombre FROM persona INNER JOIN santa ON santa.id_persona2=persona.id_persona WHERE santa.id_persona1=:NOMB');
         $sql->execute(array(':NOMB' => $nombre));
         foreach ($sql->fetchAll() as $usuario) {
-            $Usuario = $usuario['Nombre'];
+            $Usuario1 = $usuario['Nombre'];
         }
-        return $Usuario;
+        return $Usuario1;
 
     }
 

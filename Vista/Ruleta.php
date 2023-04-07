@@ -1,12 +1,21 @@
 <?php
+error_reporting(0);
 session_start();
-if($_SESSION['nombre'] != NULL && $_SESSION['id']!= NULL){
+if($_SESSION['nombre'] == NULL || $_SESSION['id']== NULL){
+    header('location: ..');
+}else{
     require_once("../Modelo/UsuarioCRUD.php");
     require_once("../Modelo/Usuario.php");
     $read = new CRUD();
     $Familia = new UsuarioClass();
-    $listaFamilia = $read->Read($_GET['id']);
+    $listaFamilia = $read->Read($_SESSION['nombre']);
     $num = count($listaFamilia);
+    $Crud = new CRUD();
+    $lista = $Crud->getMatch($_SESSION['nombre']);
+    $consultaMatch = $Crud->validateMatch($_SESSION['nombre']);
+    if ($consultaMatch == 1 ) {
+        header('location: ../Vista/Usuario.php?persona=' . $lista . '');
+    }else{
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -17,13 +26,13 @@ if($_SESSION['nombre'] != NULL && $_SESSION['id']!= NULL){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Santa Secreto</title>
         <script type="text/javascript" src="../js/Winwheel.js"></script>
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script type="text/javascript" src="../js/TweenMax.min.js"></script>
     </head>
     
     <body>
         <br /><br />
         <canvas id="canvas" width="400" height="400"></canvas>
-        <input type="button" id="spin_button" value="Girar" alt="Spin" onClick="startSpin();" />
+        <input type="button" id="spin_button" value="Girar" alt="Spin" onClick="startSpin()" />
         <a href="../Modelo/CerrarSesion.php"><input type="button" id="logout" value="Salir"/></a>
         <script>
             let theWheel = new Winwheel({
@@ -32,7 +41,7 @@ if($_SESSION['nombre'] != NULL && $_SESSION['id']!= NULL){
                 'segments'     : [<?php
                 foreach ($listaFamilia as $Familia) {
                     echo "
-                        {'fillStyle':'#f9b1c3 ','text':'" . $Familia->getNombre() . "'},
+                        {'fillStyle':'#0D95CC','text':'" . $Familia->getNombre() . "'},
                         ";
                 } ?>
                 ],
@@ -79,4 +88,5 @@ if($_SESSION['nombre'] != NULL && $_SESSION['id']!= NULL){
     </body>
     </html>
 <?php
+}
 }
